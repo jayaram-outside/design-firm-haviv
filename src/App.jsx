@@ -1,6 +1,31 @@
 import { useEffect, useState } from 'react'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import './App.css'
 import WorkItem from './components/WorkItem'
+import Navbar from './Navbar'
+import Contact from "./Contact";
+import Footer from './Footer';
+
+function WorkThumbnailsPage({ loading, error, items }) {
+  return (
+    <section className="pageContent pageContent--workThumbnails">
+      {loading && (
+        <div className='pageContent--loadingState'>
+          Loading data...
+        </div>
+      )}
+      {error && <p style={{ color: 'red' }}>Error: {error}</p>}
+      {!loading && !error && (
+        <div className='workThumbnails-grid'>
+          {items.map((item, index) => (
+            <WorkItem key={item.id || item.slug} item={item} index={index} />
+          ))}
+        </div>
+      )}
+    </section>
+  );
+}
+
 function App() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
@@ -30,25 +55,15 @@ function App() {
   }, []);
 
   return (
-    <>
-      <section className="pageContent--workThumbnails">
-        {loading && (
-          <div className='pageContent--loadingState'>
-            Loading data...
-          </div>
-        )}
-        {error && <p style={{ color: 'red' }}>Error: {error}</p>}
-        {!loading && !error && (
-          <>
-            <div className='workThumbnails-grid'>
-              {items.map((item, index) => (
-                <WorkItem key={item.id || item.slug} item={item} index={index} />
-              ))}
-            </div>
-          </>
-        )}
-      </section>
-    </>
+    <Router>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<WorkThumbnailsPage loading={loading} error={error} items={items} />} />
+        <Route path="/contact" element={<Contact />} />
+        {/* Add other routes as needed */}
+      </Routes>
+      <Footer />
+    </Router>
   )
 }
 
