@@ -1,20 +1,30 @@
 import { useState } from 'react';
+import emailjs from 'emailjs-com';
 export default function Contact() {
   const [showForm, setShowForm] = useState(false);
+  const [infoMsg, setInfoMsg] = useState('');
+  const [sending, setSending] = useState(false);
 
   // Add this function
   function handleSubmit(e) {
     e.preventDefault();
+    setSending(true);
     emailjs.sendForm(
-      'YOUR_SERVICE_ID', // replace with your EmailJS service ID
-      'YOUR_TEMPLATE_ID', // replace with your EmailJS template ID
+      'service_89roeej', // replace with your EmailJS service ID
+      'template_fq374yc', // replace with your EmailJS template ID
       e.target,
-      'YOUR_USER_ID' // replace with your EmailJS user ID
-    ).then((result) => {
-      alert('Message sent!');
-      setShowForm(false);
+      'IwHYpciexJolV22I_' // replace with your EmailJS user ID
+    ).then(() => {
+      setSending(false);
+      setInfoMsg('Message sent!');
+      setTimeout(()=>{
+        setShowForm(false);
+        setInfoMsg('');
+      }, 5000);
     }, (error) => {
-      alert('Failed to send message.');
+      setSending(false);
+      setInfoMsg('Failed to send message.');
+      setTimeout(()=> setInfoMsg(''), 5000);
     });
   }
 
@@ -77,10 +87,24 @@ export default function Contact() {
                 <input type="email" name="email" required />
               </label>
               <label>
+                Subject:
+                <input type="text" name="subject" required />
+              </label>
+              <label>
                 Message:
                 <textarea name="message" rows="5" required />
               </label>
               <button type="submit">Send Message</button>
+              {sending && (
+                <span style={{ marginLeft: '12px', color: 'green', fontWeight: 'bold' }}>
+                  Sending...
+                </span>
+              )}
+              {infoMsg && (
+                <div style={{ marginTop: '10px', color: infoMsg === 'Message sent!' ? 'green' : 'red' }}>
+                  {infoMsg}
+                </div>
+              )}
             </form>
           </div>
         </div>
