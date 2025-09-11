@@ -1,5 +1,6 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 export default function Navbar() {
+  const location = useLocation();
   return (
     <nav className="navbar">
       <div className="navbar-container">
@@ -11,10 +12,13 @@ export default function Navbar() {
         <div className="navbar-menu">
           <ul>
             <li>
-              <Link to="/">Home</Link>
+              <Link to="/" className={location.pathname === "/" ? "active" : ""}>Home</Link>
             </li>
             <li>
-              <Link to="/contact">Contact</Link>
+              <Link to="/work" className={location.pathname === "/work" ? "active" : ""}>Work</Link>
+            </li>
+            <li>
+              <Link to="/contact" className={location.pathname === "/contact" ? "active" : ""}>Contact</Link>
             </li>
           </ul>
         </div>

@@ -1,6 +1,6 @@
 /* Base layout */
 #root {
-  padding: 2rem;
+  padding: 0;
   max-width: 100%;
   margin: 0 auto;
 }
@@ -10,6 +10,7 @@
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
+  padding: 0 32px;
 }
 
 .pageContent--loadingState{
@@ -96,28 +97,27 @@
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 0;
 }
 
 /* Navbar styles */
 .navbar {
-  background: #f7f7f7;
   padding: 18px 0 0 0;
   margin-bottom: 32px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
 }
 
 .navbar-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: 1800px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 0 32px;
 }
 
+/* Keep only one logo image rule */
 .navbar-logo img {
-  height: 48px;
+  height: 14px;
   width: auto;
   display: block;
 }
@@ -131,7 +131,7 @@
 }
 
 .navbar-menu li {
-  font-size: 1.5rem;
+  font-size: 1.105rem;
   color: #888;
   font-family: 'Segoe UI', Arial, sans-serif;
   font-weight: 400;
@@ -151,12 +151,7 @@
   border-bottom: 2px solid #2176d9;
 }
 
-.navbar-logo img {
-  height: 36px;
-  width: auto;
-  margin-right: 32px;
-}
-
+/* Remove the duplicate rule that was added */
 .navbar-menu ul {
   gap: 32px;
 }
@@ -392,4 +387,91 @@
 
 .site-footer a:hover {
   text-decoration: underline;
+}
+
+/* Preamble Section */
+.preamble--container {
+  padding: 48px 32px 64px 32px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.preamble {
+  font-size: 2rem;
+  line-height: 1.3;
+  font-weight: 400;
+  color: #000;
+  max-width: 70%; /* Increased from 50% to 70% for more horizontal space */
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+/* View All Work Section */
+.pageContent--viewAllWork {
+  padding: 3rem 0;
+  text-align: center;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.pageContent--viewAllWork a {
+  color: #000;
+  text-decoration: none;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid #000;
+  padding-bottom: 2px;
+  transition: color 0.3s ease;
+}
+
+.pageContent--viewAllWork a:hover {
+  color: #666;
+  border-bottom-color: #666;
+}
+
+/* Work Page Header */
+.work-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3rem 3rem 2rem 3rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.work-header-title {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #000;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0;
+}
+
+/* Filter Styles */
+.filters {
+  display: flex;
+  gap: 2rem;
+}
+
+.filters button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0;
+  color: #888;
+  text-decoration: none;
+  transition: color 0.2s, border-bottom 0.2s;
+  padding-bottom: 4px;
+  border-bottom: 2px solid transparent;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-weight: 400;
+}
+
+.filters button:hover,
+.filters button.active {
+  color: #2176d9 !important;
+  border-bottom: 2px solid #2176d9 !important;
 }
